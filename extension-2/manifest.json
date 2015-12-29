@@ -1,0 +1,12 @@
+{
+  "name": "Chromium Injected CSS Specificity Bug Demo",
+  "description": "Test URL: http://rileyjshaw.com/chromium-injected-css-specificity-bug-demo. This extension should lose.",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "content_scripts": [
+    {
+    "matches": ["http://rileyjshaw.com/chromium-injected-css-specificity-bug-demo/*"],
+    "css": ["main.css"]
+    }
+  ]
+}

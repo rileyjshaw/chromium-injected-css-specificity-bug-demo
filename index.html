@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chromium bug: Injected CSS ignores !important rule</title>
+  <style>
+    em {
+      color: blue;
+      font-size: 3em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chromium bug: Injected CSS ignores !important rule</h1>
+  <h2>Steps to reproduce the problem:</h2>
+  <ol>
+    <li>Download <a href="./extension-1.zip">extension-1.zip</a> and <a href="./extension-2.zip">extension-2.zip</a>, and unzip them.</li>
+    <li>Navigate to <a href="chrome://extensions">chrome://extensions</a>.</li>
+    <li>Click "Load unpacked extension..." and select the unzipped extension-1 directory. Repeat for extension-2.</li>
+    <li>Refresh this page.</li>
+  </ol>
+
+  <em id="result">Once you have followed the steps above, this text should be green. If the bug isn't fixed yet, it will be red.</em>
+
+  <h2>Explanation:</h2>
+  <p>There are three competing styles for the colored text above. A <span style="color: blue">blue</span> style comes from a &lt;style&gt; tag in &lt;head&gt;. This is correctly overridden by the <span style="color: red">red</span> style from extension-2.</p>
+  <p>extension-1's <span style="color: green">green !important</span> style should override extension-1's color, but does not. It seems that injected scripts ignore !important declarations.</p>
+</body>
+</html>
